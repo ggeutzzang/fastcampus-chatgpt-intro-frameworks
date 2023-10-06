@@ -12,6 +12,7 @@ def request_chat_api(
     max_tokens: int = 500,
     temperature: float = 0.9,
 ) -> str:
+    # 실제 백엔드에서는 message와 temperature만 사용 (0.9이므로 창의적인 답변)
     resp = requests.post(
         API_BASE_URL,
         json={
@@ -41,9 +42,9 @@ def init_session_state():
 def chat_main():
     init_session_state()
 
-    if message := st.chat_input(""):
+    if message := st.chat_input("say something"):
         st.session_state.messages.append({"role": "user", "content": message})
-        with st.chat_message("user"):
+        with st.chat_message("user"):  #메시지 작성자 (채팅 컨테이너 생성)
             st.markdown(message)
 
         assistant_response = request_chat_api(message)

@@ -14,7 +14,7 @@ response = openai.ChatCompletion.create(
         {"role": "user", "content": "What can you do?"},
     ],
     temperature=1,
-    n=4,
+    n=2,
 )
 
 for res in response.choices:
